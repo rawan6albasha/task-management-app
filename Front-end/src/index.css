@@ -1,0 +1,353 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* ✅ Modern Gradient Theme - Soft & Elegant */
+    
+    /* Backgrounds */
+    --background: 210 45% 96%;      /* Light blue-gray */
+    --surface: 0 0% 100%;             /* Pure white */
+    --border: 210 16% 90%;            /* Subtle gray */
+    
+    /* Text Colors */
+    --text: 222 50% 12%;              /* Dark blue-gray */
+    --text-muted: 215 15% 52%;        /* Medium gray */
+    
+    /* Primary Colors - Modern Blue */
+    --primary: 217 89% 61%;           /* Modern cyan-blue */
+    --primary-hover: 217 89% 55%;     /* Darker blue */
+    
+    /* Status Colors - Refined */
+    --status-pending: 45 93% 56%;     /* Golden yellow */
+    --status-in-progress: 199 89% 48%; /* Modern cyan */
+    --status-completed: 142 71% 45%;  /* Fresh green */
+    --status-canceled: 0 84% 60%;     /* Softer red */
+    
+    /* Priority Colors - Bold & Clear */
+    --priority-high: 0 84% 60%;       /* Soft red */
+    --priority-medium: 38 92% 50%;    /* Orange */
+    --priority-low: 142 71% 45%;      /* Green */
+  }
+
+  body {
+    @apply bg-background text-text font-sans antialiased;
+  }
+
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Enhanced Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+  }
+
+  /* Smooth transitions */
+  button, a, input, select, textarea {
+    @apply transition-all duration-200;
+  }
+}
+
+/* ✅ Custom Utility Classes */
+.bg-gradient-primary {
+  @apply bg-gradient-to-r from-primary to-blue-400;
+}
+
+.text-gradient {
+  @apply bg-gradient-to-r from-primary via-blue-400 to-cyan-400 bg-clip-text text-transparent;
+}
+
+/* Drag & Drop Effects */
+[draggable="true"] {
+  touch-action: none;
+}
+
+.droppable-is-over {
+  background-color: rgba(59, 130, 246, 0.05) !important;
+  border-color: rgba(59, 130, 246, 0.5) !important;
+}
+
+.dragging {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04) !important;
+  transform: rotate(2deg) scale(1.02) !important;
+  z-index: 1000 !important;
+}
+
+/* Scrollbar Styling */
+.overflow-x-auto::-webkit-scrollbar {
+  height: 8px;
+}
+
+.overflow-x-auto::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.overflow-x-auto::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+.overflow-x-auto::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Task Card Styles */
+.task-card-no-drag {
+  cursor: not-allowed !important;
+  user-select: none;
+}
+
+.task-card-draggable {
+  cursor: grab;
+}
+
+.task-card-draggable:active {
+  cursor: grabbing;
+}
+
+.task-card-dragging {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04) !important;
+  transform: rotate(2deg) scale(1.02);
+  z-index: 1000;
+}
+
+.draggable-task-card {
+  position: relative !important;
+  transform: none !important;
+  margin-bottom: 0.75rem;
+}
+
+.draggable-task-card[style*="position: fixed"] {
+  z-index: 1000 !important;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04) !important;
+}
+
+/* Animations */
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Larger modal for project edit */
+.modal-content {
+  max-width: 900px !important;
+  width: 90% !important;
+}
+
+/* Make modal full height with scrollable content */
+.modal-body {
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+/* ReactQuill wrapper improvements */
+.react-quill-wrapper {
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.react-quill-wrapper .ql-toolbar {
+  background: #f9fafb;
+  border-bottom: 1px solid #e5e7eb !important;
+}
+
+.react-quill-wrapper .ql-container {
+  font-family: inherit;
+  font-size: 0.875rem;
+  height: 200px !important;
+}
+
+.react-quill-wrapper .ql-editor {
+  min-height: 200px;
+  font-size: 0.875rem;
+}
+
+/* RTL support for Arabic */
+.react-quill-wrapper[dir="rtl"] .ql-editor {
+  text-align: right;
+}
+
+/* Modal sizing */
+.modal-dialog {
+  max-width: 900px;
+  margin: 1.75rem auto;
+}
+
+@media (max-width: 768px) {
+  .modal-dialog {
+    max-width: 100%;
+    margin: 0.5rem;
+  }
+  
+  .modal-content {
+    max-height: 95vh;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-slideIn {
+  animation: slideInUp 0.5s ease-out;
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Column spacing */
+.kanban-column {
+  min-width: 0;
+  flex: 1;
+}
+
+/* Ensure cards don't overlap */
+.kanban-column > div {
+  position: relative;
+}
+
+/* أيقونة القفل */
+.lock-icon {
+  animation: pulse 2s infinite;
+}
+
+
+.ql-toolbar {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 100 !important;
+  background-color: white !important;
+  border-bottom: 1px solid #e5e7eb !important;
+}
+
+.ql-container {
+  z-index: 1 !important;
+}
+
+.ql-editor {
+  min-height: 120px !important;
+  max-height: 300px !important;
+  overflow-y: auto !important;
+}
+
+/* ضمان عدم تغطية المحتوى للـ toolbar */
+.react-quill-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 200px;
+}
+
+.react-quill-wrapper .ql-toolbar {
+  flex-shrink: 0;
+}
+
+.react-quill-wrapper .ql-container {
+  flex-grow: 1;
+  overflow: hidden;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+  /* Enhanced animations */
+  @keyframes slideInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes pulse-soft {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.7;
+    }
+  }
+
+
+@layer components {
+  /* Enhanced card styles */
+  .card-modern {
+    @apply bg-surface border border-border rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300;
+  }
+
+  /* Status color utilities */
+  .status-badge {
+    @apply inline-flex items-center px-3 py-1.5 rounded-full text-xs font-semibold transition-all;
+  }
+
+  .animate-slideIn {
+    animation: slideInUp 0.5s ease-out;
+  }
+
+  .animate-fadeIn {
+    animation: fadeIn 0.3s ease-out;
+  }
+}
+
+/* ✅ أضف هذا في ملف CSS الرئيسي */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}

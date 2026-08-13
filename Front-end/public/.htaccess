@@ -1,0 +1,16 @@
+Options -MultiViews
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ index.html [QSA,L]
+
+# الحماية ومنع كاش ملف الـ HTML الأساسي لضمان وصول التحديثات فوراً
+<FilesMatch "\.(html|htm)$">
+    FileETag None
+    <IfModule mod_headers.c>
+        Header unset ETag
+        Header set Cache-Control "max-age=0, no-cache, no-store, must-revalidate"
+        Header set Pragma "no-cache"
+        Header set Expires "Wed, 11 Jan 1984 05:00:00 GMT"
+    </IfModule>
+</FilesMatch>
